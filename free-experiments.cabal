@@ -1,0 +1,28 @@
+Name:                   free-experiments
+Version:                0.1.0
+Cabal-Version:          >= 1.10
+Build-Type:             Simple
+Author:                 Drew Hess <src@drewhess.com>
+Maintainer:             Drew Hess <src@drewhess.com>
+Homepage:               https://github.com/dhess/free-experiments/
+Stability:              experimental
+License:                BSD3
+License-File:           LICENSE
+Copyright:              Copyright (c) 2015, Drew Hess
+Tested-With:            GHC == 7.10.1
+Synopsis:               Playing with the Free monad
+
+Executable retry1
+  Main-Is:              RetryTH.hs
+  Default-Language:     Haskell2010
+  HS-Source-Dirs:       src
+  GHC-Options:          -Wall
+  Build-Depends:        base >= 4 && < 5
+                      , free
+                      , mtl
+                      , text
+                      , transformers
+
+Source-Repository head
+  Type:                 git
+  Location:             git://github.com/dhess/free-experiments.git
