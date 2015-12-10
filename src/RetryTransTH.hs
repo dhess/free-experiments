@@ -68,6 +68,20 @@ runRetryT = iterT run
       -- to control failure with MaybeT.
       -- We repeatedly run retriable block until we get it to work.
       --Just x <- runMaybeT . F.msum $ repeat (runRetryT block)
+      --
+      -- XXX dhess: note that the actual retry mechanism is disabled.
+      -- Because RetryT is a transformer, the monad which it wraps
+      -- may perform side effects in the retried block; how do
+      -- we un-do those effects when we retry, or how could we
+      -- prevent the monad from performing side effects in the first
+      -- place?
+      --
+      -- One way to do this might be to only wrap STM, so that the
+      -- transaction could be rolled back upon failure. Anyway, the
+      -- point of this DSL is only to make a 'with'-style command
+      -- available, such that the interpreter could be run within the
+      -- interpreter. Therefore, we don't address the larger problem
+      -- of retrying with side effects and we simply punt here.
       x <- runRetryT block
       next x
 
